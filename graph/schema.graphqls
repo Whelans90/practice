@@ -1,0 +1,89 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+
+type Team {
+  id: ID!
+  name: TeamName!
+  league: String!
+  players: [Player]
+}
+
+type Player {
+  id: ID!
+  name: String!
+  position: Position!
+  nationality: String!
+  goals: Int
+  assists: Int
+  team: Team
+}
+
+
+input PlayerInput {
+  name: String!
+  position: Position!
+  nationality: String!
+  goals: Int
+  assists: Int
+  teamName: TeamName!
+  id: String
+}
+
+enum Position {
+  "Players typically responsible for generating attacks"
+  FORWARD
+  "Players typically responsible for providing balance between attack and defense"
+  MIDFIELDER
+  "Players responsible for sheilding the goal"
+  DEFENDER
+  "Last line of defense, stands in goal and can use their hands"
+  GOALIE
+}
+
+enum TeamName {
+  MANCHESTERUNITED
+	ARSENAL
+	CHELSEA
+	MANCHESTERCITY
+	WESTHAM
+  WOLVERHAMPTONWANDERERS
+	SPUDS
+  NEWCASTLEUNITED
+  BRENTFORD
+  LUTONTOWN
+  BURNLEY
+  NOTTINGHAMFOREST
+  BRIGHTON
+  FULHAM
+  FREEAGENT
+}
+
+type Mutation {
+  "Upsert is a combination of Update/Insert. If an id is provided then the player is updated. If there is no ID then a new player is created"
+  upsertPlayer(input: PlayerInput!): UpsertPlayerResponse!
+  "Since I am using an In Memmory data store, this mutation seeds the API with team Data. If Reset is true, then the API will reset the teams"
+  seedTeams(input: Boolean): [Team!]!
+}
+
+type Query {
+  teams: [Team!]
+  players(position: Position): [Player!]
+  player(id: ID!) : Player
+  team(id: ID!) : Team
+}
+
+
+type UpsertPlayerResponse {
+  "Similar to HTTP status code, represents the state of the mutation"
+  code: Int!
+  "Informs if the mutation completed successfully"
+  success: Boolean!
+  "Explains what happened during the mutation"
+  message: String!
+  "Returns the player who just had their goals increased"
+  player: Player
+}
+
+
