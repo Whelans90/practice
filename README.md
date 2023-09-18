@@ -12,12 +12,12 @@ For instance, I have not worked with the Go programing language yet, and I have 
 - Google Artifact Respository
 - GoogleCloud CLI
 
-## What I did
+## What did I do?
 I looked at a few YouTube videos about Go and GraphQL. Then I created my own repository. It is a really simple API that, at the moment, only has a few functions. You are able to see what is possible by looking at the [GrpahQL schema](https://github.com/Whelans90/practice/blob/main/graph/schema.graphqls).
 
 I used the Go mod GqlGen which generates code based on the GraphQl Schema. Then I created resolver functions, that modify an in memory datastore. Once I was done I created a Docker Image that I pushed to Google Artifact Repository, and deployed with Google Cloudrun. 
 
-## In the Future
+## Plans for the future?
 I would like to add a DB connection, maybe a PostgreSQL DB. I also need to add more api endpoints. Ontop of that I would like to improve the error handling 
 
 ## Where can you see the results?
@@ -49,7 +49,7 @@ mutation upsertPlayer($player: PlayerInput!) {
             id
             position
             team{
-                    ame
+                name
             }
         }
     }
