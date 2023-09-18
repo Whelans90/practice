@@ -1,4 +1,4 @@
-#Practice 
+# Practice 
 
 What am I practicing? I am using this repostory to experiment with different technologies that I may be unfamiliar with. 
 
@@ -22,38 +22,34 @@ I would like to add a DB connection, maybe a PostgreSQL DB. I also need to add m
 
 ## Where can you see the results?
 
-This first draft has been [published on CloudRun]("https://go-practice-graphql-gqszpzvufq-ul.a.run.app/"), I am not sure how much this will cost in the future, but for now I have a free trial. 
+This first draft has been [published on CloudRun](https://go-practice-graphql-gqszpzvufq-ul.a.run.app/), I am not sure how much this will cost in the future, but for now I have a free trial. 
 
 ### What to do with it?
 
 Create some GQL queries. I have a mutation for seeding team data in the in memory data store. Right now it can only be run once without any validations, but in the future I would like to correct that. You can run it with the following command:
 
 ```graphql 
-{
-    mutation seedTeams() {
-        seedTeams(input: true) {
-            name
-            league
-            id
-        }
+mutation seedTeams() {
+    seedTeams(input: true) {
+        name
+        league
+        id
     }
 }
 ```
 **Upsert a player**
 ```graphql 
-{
-    mutation upsertPlayer($player: PlayerInput!) {
-        upsertPlayer(input: $player) {
-            code
-            success
-            message
-            player{
-                name
-                id
-                position
-                team{
-                    name
-                }
+mutation upsertPlayer($player: PlayerInput!) {
+    upsertPlayer(input: $player) {
+        code
+        success
+        message
+        player{
+            name
+            id
+            position
+            team{
+                    ame
             }
         }
     }
@@ -73,17 +69,16 @@ Sample JSON variable:
 
 **Fetch a player**
 ```graphql 
-    query player($id: ID!) {
-        player(id: $id) {
+query player($id: ID!) {
+    player(id: $id) {
+        name
+        position
+        id
+        team {
             name
-            position
-            id
-            team {
-                name
-            }
         }
     }
-
+}
 ```
 **Fetch Teams**
 ```graphql 
